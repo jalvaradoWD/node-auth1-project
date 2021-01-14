@@ -3,6 +3,8 @@ const express = require("express");
 const server = express();
 const session = require("express-session");
 
+const usersAPI = require("./api/user.router");
+
 const sessionConfig = {
   name: process.env.EXPRESS_SESSION_NAME,
   secret: process.env.EXPRESS_SESSION_SECRET,
@@ -17,5 +19,7 @@ const sessionConfig = {
 
 server.use(express.json());
 server.use(session(sessionConfig));
+
+server.use("/api/users", usersAPI);
 
 module.exports = server;
